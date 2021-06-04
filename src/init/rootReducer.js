@@ -1,8 +1,15 @@
 import { combineReducers } from 'redux';
 
 // делаем алиас чтобы в дальнейшем его использовать
-import { themeReducer as theme } from '../domains/theme/reducers/theme';
+import {
+  weatherReducer as weather,
+} from '../bus/weather/reducers/weatherReducer';
+
+import {
+  selectorReducer as selector,
+} from '../bus/weather/reducers/selectorReducer';
 
 export const rootReducer = combineReducers({ // большой обьект состояния
-  theme, // обьект подсостояния
+  selector,
+  weather, // обьект подсостояния
 });

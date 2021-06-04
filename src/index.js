@@ -1,13 +1,16 @@
+// Core
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { App } from './domains/theme/App';
+import { Provider as ReduxProvider } from 'react-redux';
+
+// App
+import { Weather } from './view/pages/Weather';
 
 import { store } from './init/store';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ReduxProvider store={store}>
+    <Weather />
+  </ReduxProvider>,
   document.getElementById('root'),
 );

@@ -1,5 +1,6 @@
 import { compose } from 'redux';
 import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
 
 // функция которая вызывается и получает в себя обьект параметров
 export const logger = createLogger({
@@ -27,7 +28,8 @@ const composeEnhancers = developmentEnvironment
   ? devtools
   : compose;
 // создаем массив всех middlewairs
-const middleware = [];
+// добавляем его сразу в middleware так как он нам нуже всегда
+const middleware = [thunk];
 
 // если у нас режим разработки добавляем в массив logger
 if (developmentEnvironment) {
