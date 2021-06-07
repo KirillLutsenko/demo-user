@@ -1,50 +1,87 @@
-import { api } from '../../api';
+import { api } from './api';
 
-import { types } from './types';
+import {
+  WEATHER_START_FETCHING,
+  WEATHER_STOP_FETCHING,
+  WEATHER_FILL,
+  WEATHER_SET_FETCHING_ERROR,
+  WEATHER_SET_MIN_TEMPERATURE,
+  WEATHER_SET_MAX_TEMPERATURE,
+  WEATHER_SET_TYPE_OF_WEATHER,
+  WEATHER_SET_MAXTEMPVALID_ERROR,
+  WEATHER_SET_MINTEMPVALID_ERROR,
+  WEATHER_SET_STATUS_OF_FILTER,
+} from './types';
 
-export const weatherActions = Object.freeze({
+export const forecastActions = Object.freeze({
+  // fetch actions
   startFetching: () => ({
-    type: types.WEATHER_START_FETCHING,
+    type: WEATHER_START_FETCHING,
   }),
 
   stopFetching: () => ({
-    type: types.WEATHER_STOP_FETCHING,
+    type: WEATHER_STOP_FETCHING,
   }),
 
   fill: payload => ({
-    type: types.WEATHER_FILL,
-    payload, // payload: payload
+    type: WEATHER_FILL,
+    payload,
   }),
 
   setFetchingError: error => ({
-    type: types.WEATHER_SET_FETCHING_ERROR,
+    type: WEATHER_SET_FETCHING_ERROR,
     error: true,
     payload: error,
   }),
 
-  setSelectedDay: payload => ({
-    type: types.DISPLAY_THE_SELECT_DAY,
-    payload, // payload: payload
-  }),
-
   fetchAsync: () => async(dispatch) => {
-    dispatch(weatherActions.startFetching());
+    dispatch(forecastActions.startFetching());
 
     const response = await api.weather.fetch();
 
-    // проверить что возвращает response.json() с нашего api
     if (response.status === 200) {
       const { data } = await response.json();
 
-      dispatch(weatherActions.fill(data));
+      dispatch(forecastActions.fill(data));
     } else {
       const error = {
         status: response.status,
       };
 
-      dispatch(weatherActions.setFetchingError(error));
+      dispatch(forecastActions.setFetchingError(error));
     }
 
-    dispatch(weatherActions.stopFetching());
+    dispatch(forecastActions.stopFetching());
   },
+
+  // filter actions
+  setMinTemperature: payload => ({
+    type: WEATHER_SET_MIN_TEMPERATURE,
+    payload,
+  }),
+
+  setMaxTemperature: payload => ({
+    type: WEATHER_SET_MAX_TEMPERATURE,
+    payload,
+  }),
+
+  setTypeOfWeather: payload => ({
+    type: WEATHER_SET_TYPE_OF_WEATHER,
+    payload,
+  }),
+
+  setMinTempValidationError: payload => ({
+    type: WEATHER_SET_MINTEMPVALID_ERROR,
+    payload,
+  }),
+
+  setMaxTempValidationError: payload => ({
+    type: WEATHER_SET_MAXTEMPVALID_ERROR,
+    payload,
+  }),
+
+  setFilterStatus: payload => ({
+    type: WEATHER_SET_STATUS_OF_FILTER,
+    payload,
+  }),
 });

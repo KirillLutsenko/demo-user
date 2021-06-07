@@ -2,14 +2,14 @@ import { combineReducers } from 'redux';
 
 // делаем алиас чтобы в дальнейшем его использовать
 import {
-  weatherReducer as weather,
-} from '../bus/weather/reducers/weatherReducer';
+  forecastReducer as weather,
+} from '../bus/weather/reducer';
 
 import {
-  selectorReducer as selector,
-} from '../bus/weather/reducers/selectorReducer';
+  clientReducer as weatherDayId,
+} from '../bus/client/activeDay/reducer';
 
 export const rootReducer = combineReducers({ // большой обьект состояния
-  selector,
-  weather, // обьект подсостояния
+  weather,
+  weatherDayId,
 });
