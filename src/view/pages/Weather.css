@@ -43,6 +43,7 @@ main {
   letter-spacing: 1px;
   color: #fff;
   text-transform: uppercase;
+  transition: background-color 0.2s ease;
 }
 
 .button:hover,
