@@ -1,0 +1,59 @@
+.current-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 38px;
+}
+
+.current-weather .temperature {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  font-size: 350px;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 100px;
+}
+
+.current-weather .temperature::after {
+  position: absolute;
+  top: 53px;
+  right: -70px;
+  content: '';
+  display: inline-block;
+  width: 37px;
+  height: 41px;
+  border: solid 5px #fff;
+  border-radius: 50%;
+}
+
+.current-weather .meta span {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  font-size: 19px;
+  color: #fff;
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.current-weather .meta span:first-child {
+  margin-right: 81px;
+}
+
+.current-weather .meta .rainy::before {
+  content: '';
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background-image: url("../../images/rainy.png");
+  margin-right: 11px;
+}
+
+.current-weather .meta .humidity::before {
+  content: '';
+  display: inline-block;
+  width: 19px;
+  height: 28px;
+  background-image: url("../../images/humidity.png");
+  margin-right: 11px;
+}
