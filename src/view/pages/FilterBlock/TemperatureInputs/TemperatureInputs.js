@@ -22,6 +22,7 @@ export const TemperatureInputs = () => {
         <input
           id="min-temperature"
           type="text"
+          maxLength="2"
           value={minTemperature}
           onChange={minTemperatureChange}
         />
@@ -36,6 +37,7 @@ export const TemperatureInputs = () => {
         <input
           id="max-temperature"
           type="text"
+          maxLength="2"
           value={maxTemperature}
           onChange={maxTemperatureChange}
         />
